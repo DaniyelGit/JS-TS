@@ -1,4 +1,4 @@
-type StudentType = {
+export type StudentType = {
    id: number
    name: string
    age: number
@@ -10,10 +10,10 @@ type StudentType = {
          countryTitle: string
       }
    },
-   technologies: Array<{id: number, title: string}>
+   technologies: Array<{ id: number, title: string }>
 }
 
-const student: StudentType = {
+export const student: StudentType = {
    id: 1,
    name: 'Даниель',
    age: 26,
@@ -33,28 +33,33 @@ const student: StudentType = {
    ],
 };
 
+
+// типизация объекта для 2-го урока про Objects, file 02.test.ts
+
+
+export type GovernmentBuildingsType = {
+   type: string
+   budget: number
+   staffCount: number
+   address: { street: StreetType }
+}
+export type StreetType = {
+   title: string
+}
+export type AddressType = {
+   number: number
+   street: StreetType
+}
+export type HouseType = {
+   buildedAt: number
+   repaired: boolean
+   address: AddressType
+}
+
 export type CityType = {
-   title: string,
-   houses: Array<{
-      buildedAt: number
-      repaired: false
-      address: {
-         number: number,
-         street: {
-            title: string
-         }
-      }
-   }>
-   governmentBuildings: Array<{
-      type: 'HOSPITAL' | 'FIRE-STATION'
-      budget: number
-      staffCount: number
-      address: {
-         street: {
-            title: string
-         }
-      }
-   }>
+   title: string
+   houses: Array<HouseType>
+   governmentBuildings: Array<GovernmentBuildingsType>
    citizensNumber: number
 };
 
