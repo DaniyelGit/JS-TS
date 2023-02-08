@@ -1,5 +1,5 @@
 import {CityType} from "../Objects/02";
-import {demolishHousesOnTheStreet, getBuildingsWithStaffCountGreaterThen} from "./04";
+import {createMessages, getListTitleStreetForHouses} from "./05-02";
 
 let city: CityType;
 
@@ -67,16 +67,19 @@ beforeEach(() => {
    }
 });
 
-test('houses should be destroyed', () => {
-   demolishHousesOnTheStreet(city, 'Happy street');
+test('create a list of street title of houses', () => {
+   const result = getListTitleStreetForHouses(city);
 
-   expect(city.houses.length).toBe(1);
-   expect(city.houses[0].id).toBe(1);
+   expect(result.length).toBe(3);
+   expect(result[0]).toBe('White street');
+   expect(result[1]).toBe('Happy street');
+   expect(result[2]).toBe('Happy street');
 });
 
-test('buildings with correct staff count', () => {
-   let buildings = getBuildingsWithStaffCountGreaterThen(city.governmentBuildings, 500);
+test('create greeting messages for streets', () => {
+   const result = createMessages(city);
 
-   expect(buildings.length).toBe(1);
-   expect(buildings[0].type).toBe('FIRE-STATION');
-})
+   expect(result.length).toBe(2);
+   expect(result[0]).toBe('Hello guys from Central Str');
+   expect(result[1]).toBe('Hello guys from South Str');
+});
